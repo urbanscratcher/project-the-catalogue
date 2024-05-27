@@ -6,4 +6,12 @@
   html {
     @apply font-mono;
   }
+
+  .markdown h1 {
+    @apply break-words text-6xl text-right font-normal;
+  }
+
+  .markdown h2 {
+    @apply text-2xl;
+  }
 }

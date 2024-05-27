@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Markdown from "react-markdown";
 
 function Page({ params }: { params: { slug: string } }) {
-  const [url, setUrl] = useState("");
+  const [text, setText] = useState("");
   const slug = params.slug;
 
   useEffect(() => {
@@ -11,14 +11,15 @@ function Page({ params }: { params: { slug: string } }) {
     fetch(url)
       .then((res) => res.text())
       .then((t) => {
-        setUrl(t);
+        console.log(t);
+        setText(t);
       });
   }, [slug]);
 
   return (
-    <>
-      <Markdown>{url}</Markdown>
-    </>
+    <section className="markdown prose max-w-xl mx-auto py-12">
+      <Markdown>{text}</Markdown>
+    </section>
   );
 }
 

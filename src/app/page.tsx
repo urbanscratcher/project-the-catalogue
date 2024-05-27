@@ -20,31 +20,43 @@ export default function Home() {
   return (
     <>
       {projects.length > 0 ? (
-        <div className="mt-12 max-wlg mx-auto grid gap-6 lg:grids-cols-2 lg:grid-cols-2 lg:max-w-none">
-          {" "}
-          <ol className="flex flex-col gap-5">
+        <div className="py-12 max-w-lg mx-auto grid gap-12 lg:grid-cols-[420px_auto] lg:max-w-none">
+          <ol className="flex flex-col gap-5 break-words whitespace-pre-wrap">
             {projects.map((post: any, i) => (
               <li key={post.id}>
                 <div className="flex flex-col">
                   <p className="font-bold leading-6 tracking-wide">
-                    <a
-                      href={`http://${post?.link}`}
+                    <Link
+                      href={
+                        post?.github
+                          ? `/projects/${post.github.split("/")[4]}`
+                          : ""
+                      }
                       className="hover:underline"
-                      target="_blank"
+                      target="_self"
                     >
                       {String.fromCharCode(64 + i + 1)}.{" "}
                       {post.title.toUpperCase()}
-                    </a>
-                    <span className="text-gray-700 font-normal tracking-normal">
-                      &nbsp;&nbsp;{post.description}&nbsp;
-                    </span>
+                    </Link>
+                    <span> </span>
                     <a
-                      className="text-sm hover:underline"
+                      className="text-sm underline underline-offset-2 hover:no-underline"
+                      href={`${post?.link}`}
+                      target="_blank"
+                    >
+                      site
+                    </a>
+                    <span> </span>
+                    <a
+                      className="text-sm underline underline-offset-2 hover:no-underline"
                       href={`${post?.github}`}
                       target="_blank"
                     >
-                      source
+                      github
                     </a>
+                    <span className="font-normal tracking-normal">
+                      &nbsp;&nbsp;{post.description}&nbsp;
+                    </span>
                   </p>
 
                   <div className="border-t border-gray-800 p-1 my-1  text-xs flex justify-between">
@@ -66,26 +78,33 @@ export default function Home() {
             ))}
           </ol>
           {/* list display */}
-          {projects.map((post: any, i) => (
-            <Link
-              key={post.id}
-              href={
-                post?.github ? `/projects/${post.github.split("/")[4]}` : ""
-              }
-            >
-              <p className="font-bold text-2xl">
-                {String.fromCharCode(64 + i + 1)}.
-              </p>
-              {post?.cover && (
-                <Image
-                  src={post.cover.url}
-                  alt={post.title}
-                  width={200}
-                  height={0}
-                />
-              )}
-            </Link>
-          ))}
+          <ol className="grid lg:grid-cols-3 gap-0">
+            {projects.map((post: any, i) => (
+              <li key={post.id} className="py-2 px-4">
+                <Link
+                  className="w-fit"
+                  href={
+                    post?.github ? `/projects/${post.github.split("/")[4]}` : ""
+                  }
+                >
+                  <p className="font-bold text-2xl">
+                    {String.fromCharCode(64 + i + 1)}.
+                  </p>
+                  {post?.cover?.url ? (
+                    <Image
+                      src={post.cover.url}
+                      alt={post.title}
+                      width={200}
+                      height={0}
+                      className="object-cover"
+                    />
+                  ) : (
+                    <p>{post.title}</p>
+                  )}
+                </Link>
+              </li>
+            ))}
+          </ol>
         </div>
       ) : (
         <p>loading...</p>
