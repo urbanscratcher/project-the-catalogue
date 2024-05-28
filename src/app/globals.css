@@ -16,14 +16,6 @@
   }
 
   /* Custom scrollbar styles */
-  /* .sidebar {
-    direction: rtl;
-  }
-
-  .sidebar > * {
-    direction: ltr;
-  } */
-
   .sidebar::-webkit-scrollbar {
     width: 2px;
   }

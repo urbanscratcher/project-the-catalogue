@@ -29,7 +29,9 @@ function CatalogueList() {
                   post?.github ? `/projects/${post.github.split("/")[4]}` : ""
                 }
                 className="hover:underline"
-                target="_self"
+                onClick={() => {
+                  window.scrollTo(0, 0);
+                }}
               >
                 {String.fromCharCode(64 + i + 1)}. {post.title.toUpperCase()}
               </Link>
