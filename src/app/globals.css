@@ -8,7 +8,7 @@
   }
 
   .markdown h1 {
-    @apply break-words text-6xl text-right font-normal;
+    @apply break-words text-7xl tracking-tight leading-tight text-center font-medium;
   }
 
   .markdown h2 {
