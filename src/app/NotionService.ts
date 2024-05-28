@@ -58,9 +58,9 @@ export default class NotionService {
     try {
       const res = await data.json();
 
-      const result = res.results.map((res: any) =>
-        this.convertToProjectPost(res)
-      );
+      const result = res.results
+        .map((res: any) => this.convertToProjectPost(res))
+        .sort((a: ProjectPost, b: ProjectPost) => (a.title > b.title ? 1 : -1));
 
       return {
         hasMore: res.has_more,
