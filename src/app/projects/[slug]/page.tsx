@@ -21,7 +21,7 @@ function Page({ params }: { params: { slug: string } }) {
   }, [slug, url]);
 
   return (
-    <section className="markdown prose max-w-xl mx-auto py-12">
+    <section className="markdown prose max-w-3xl mx-auto">
       <Markdown>{text}</Markdown>
     </section>
   );

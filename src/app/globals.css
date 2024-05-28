@@ -14,4 +14,31 @@
   .markdown h2 {
     @apply text-2xl;
   }
+
+  /* Custom scrollbar styles */
+  /* .sidebar {
+    direction: rtl;
+  }
+
+  .sidebar > * {
+    direction: ltr;
+  } */
+
+  .sidebar::-webkit-scrollbar {
+    width: 2px;
+  }
+
+  .sidebar:hover::-webkit-scrollbar {
+    width: 2px;
+  }
+
+  .sidebar::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 0px;
+  }
+
+  .sidebar:hover::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.15);
+    border-radius: 0px;
+  }
 }
