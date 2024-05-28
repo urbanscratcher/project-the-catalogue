@@ -1,3 +1,23 @@
+type SelectOption = {
+  id: string;
+  name: string;
+  color: string;
+};
+
+type ProjectPost = {
+  id: string;
+  cover: any;
+  title: string;
+  description: string;
+  descriptionKr: string;
+  slug: string;
+  role: SelectOption[];
+  techStack: SelectOption[];
+  date: string;
+  link: string;
+  github: string;
+};
+
 export default class NotionService {
   private PROXIED_URL: string =
     "https://notion-cors.urbanscratcher.workers.dev";
@@ -56,8 +76,7 @@ export default class NotionService {
     }
   }
 
-  private convertToProjectPost(page: any): any {
-    console.log(page);
+  private convertToProjectPost(page: any): ProjectPost {
     let cover = page.cover;
     cover =
       cover?.type == "file"
@@ -66,19 +85,27 @@ export default class NotionService {
         ? cover.external.url
         : "";
 
-    console.log(page.properties);
+    const techStack: SelectOption[] = page.properties.TechStack.multi_select;
+    techStack.sort((a, b) => (a.name > b.name ? 1 : -1));
 
-    return {
+    const role: SelectOption[] = page.properties.Role.multi_select;
+    role.sort((a, b) => (a.name > b.name ? 1 : -1));
+
+    const res = {
       id: page.id,
       cover: cover,
       title: page.properties.Title.title[0].plain_text,
       description: page.properties.Description.rich_text[0].plain_text,
+      descriptionKr:
+        page.properties.Description_kr?.rich_text[0]?.plain_text ?? "",
       slug: page.properties.Slug.formula.string,
-      role: page.properties.Role.multi_select,
-      techStack: page.properties.TechStack.multi_select,
+      role: role,
+      techStack: techStack,
       date: page.properties.Updated.last_edited_time,
       link: page.properties.Link.url,
       github: page.properties.Github.url,
     };
+
+    return res;
   }
 }

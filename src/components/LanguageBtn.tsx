@@ -1,8 +1,9 @@
 "use client";
-import { useLanguage } from "@/context/LanguageContext";
+import { LanguageContext } from "@/context/LanguageContext";
+import { useContext } from "react";
 
 function LanguageBtn() {
-  const { language, toggleLanguage } = useLanguage();
+  const { language, toggleLanguage } = useContext(LanguageContext);
 
   return (
     <p

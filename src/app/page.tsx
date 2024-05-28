@@ -1,9 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import NotionService from "./NotionService";
-import Link from "next/link";
+import Loading from "@/components/Loading";
+import { LanguageContext } from "@/context/LanguageContext";
 import Image from "next/image";
+import Link from "next/link";
+import { useContext, useEffect, useState } from "react";
+import NotionService from "./NotionService";
 
 export default function Home() {
   const [projects, setProjects] = useState([]);
@@ -16,6 +18,8 @@ export default function Home() {
       }
     });
   }, []);
+
+  const { language } = useContext(LanguageContext);
 
   return (
     <>
@@ -44,7 +48,7 @@ export default function Home() {
                       href={`${post?.link}`}
                       target="_blank"
                     >
-                      site
+                      {language === "kr" ? "링크" : "link"}
                     </a>
                     <span> </span>
                     <a
@@ -52,10 +56,14 @@ export default function Home() {
                       href={`${post?.github}`}
                       target="_blank"
                     >
-                      github
+                      {language === "kr" ? "깃헙" : "github"}
                     </a>
                     <span className="font-normal tracking-normal">
-                      &nbsp;&nbsp;{post.description}&nbsp;
+                      &nbsp;&nbsp;
+                      {language === "kr"
+                        ? post?.descriptionKr ?? ""
+                        : post.description}
+                      &nbsp;
                     </span>
                   </p>
 
@@ -107,7 +115,9 @@ export default function Home() {
           </ol>
         </div>
       ) : (
-        <p>loading...</p>
+        <div className="flex min-h-[90vh] justify-center text-center py-48">
+          <Loading />
+        </div>
       )}
     </>
   );
