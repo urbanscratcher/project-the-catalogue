@@ -5,10 +5,14 @@ import { useContext } from "react";
 function LanguageBtn() {
   const { language, toggleLanguage } = useContext(LanguageContext);
 
+  const handleToggle = () => {
+    toggleLanguage();
+  };
+
   return (
     <p
       className="hover:cursor-pointer hover:underline uppercase"
-      onClick={() => toggleLanguage()}
+      onClick={handleToggle}
     >
       {language}
     </p>
