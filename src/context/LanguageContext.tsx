@@ -25,7 +25,7 @@ function LanguageProvider({ children }: { children: ReactNode }) {
 
   const toggleLanguage = () => {
     setLanguage((prevLanguage) => (prevLanguage === "en" ? "kr" : "en"));
-    localStorage.setItem("language", language);
+    localStorage.setItem("language", language === "en" ? "kr" : "en");
   };
 
   return (

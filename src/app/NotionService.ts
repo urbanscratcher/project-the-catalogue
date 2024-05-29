@@ -16,6 +16,8 @@ type ProjectPost = {
   date: string;
   link: string;
   github: string;
+  projectStart: string;
+  projectEnd?: string | undefined;
 };
 
 export default class NotionService {
@@ -41,8 +43,8 @@ export default class NotionService {
       },
       sorts: [
         {
-          property: "Created",
-          direction: "descending",
+          property: "ProjectDuration",
+          direction: "Ascending",
         },
       ],
     };
@@ -60,7 +62,9 @@ export default class NotionService {
 
       const result = res.results
         .map((res: any) => this.convertToProjectPost(res))
-        .sort((a: ProjectPost, b: ProjectPost) => (a.title > b.title ? 1 : -1));
+        .sort((a: ProjectPost, b: ProjectPost) =>
+          a.projectStart < b.projectStart ? -1 : 1
+        );
 
       return {
         hasMore: res.has_more,
@@ -104,6 +108,8 @@ export default class NotionService {
       date: page.properties.Updated.last_edited_time,
       link: page.properties.Link.url,
       github: page.properties.Github.url,
+      projectStart: page.properties.ProjectDuration.date?.start ?? "2023-01-01",
+      projectEnd: page.properties.ProjectDuration.date?.end ?? undefined,
     };
 
     return res;

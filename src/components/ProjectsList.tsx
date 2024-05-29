@@ -15,6 +15,7 @@ function ProjectsList() {
       }
     });
   }, []);
+
   return (
     <ol className="grid lg:grid-cols-3 gap-0">
       {projects.map((post: any, i) => (
