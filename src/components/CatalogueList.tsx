@@ -35,28 +35,56 @@ function CatalogueList() {
               >
                 {String.fromCharCode(64 + i + 1)}. {post.title.toUpperCase()}
               </Link>
-              <span> </span>
-              <a
-                className="text-sm underline underline-offset-2 hover:no-underline"
-                href={`${post?.link}`}
-                target="_blank"
-              >
-                {language === "kr" ? "링크" : "link"}
-              </a>
-              <span> </span>
-              <a
-                className="text-sm underline underline-offset-2 hover:no-underline"
-                href={`${post?.github}`}
-                target="_blank"
-              >
-                {language === "kr" ? "깃헙" : "github"}
-              </a>
+              <span>
+                {post?.link || post?.github ? (
+                  <span className="font-normal">{" | "}</span>
+                ) : (
+                  ""
+                )}
+                {post?.link && (
+                  <>
+                    <a
+                      className="text-sm underline underline-offset-2 hover:no-underline"
+                      href={`${post.link}`}
+                      target="_blank"
+                    >
+                      {language === "kr" ? "링크" : "link"}
+                    </a>
+                    <span> </span>
+                  </>
+                )}
+                {post?.github && (
+                  <a
+                    className="text-sm underline underline-offset-2 hover:no-underline"
+                    href={`${post.github}`}
+                    target="_blank"
+                  >
+                    {language === "kr" ? "깃헙" : "github"}
+                  </a>
+                )}
+              </span>
               <span className="font-normal tracking-normal">
                 &nbsp;&nbsp;
                 {language === "kr"
                   ? post?.descriptionKr ?? ""
                   : post.description}
                 &nbsp;
+                <small>
+                  {new Date(post.projectStart)
+                    .getFullYear()
+                    .toString()
+                    .substring(2, 4) +
+                    "." +
+                    (new Date(post.projectStart).getMonth() + 1)}
+                  -
+                  {post?.projectEnd &&
+                    new Date(post.projectEnd)
+                      .getFullYear()
+                      .toString()
+                      .substring(2, 4) +
+                      "." +
+                      (new Date(post.projectEnd).getMonth() + 1)}
+                </small>
               </span>
             </p>
 

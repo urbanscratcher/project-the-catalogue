@@ -9,21 +9,75 @@ const interests: Interest[] = [
   {
     display: "Generative Art",
     url: "",
-    materials: "",
+    materials: "https://github.com/urbanscratcher/study-graphics",
     slug: "generative-art",
   },
-  { display: "p5.js", url: "", slug: "generative-art" },
-  { display: "JavaScript", url: "", slug: "generative-art" },
-  { display: "TypeScript", url: "", slug: "generative-art" },
-  { display: "React", url: "", slug: "generative-art" },
-  { display: "Next.js", url: "", slug: "generative-art" },
-  { display: "Three.js", url: "", slug: "generative-art" },
-  { display: "React Three Fiber", url: "", slug: "generative-art" },
-  { display: "CSS", url: "", slug: "generative-art" },
-  { display: "React Query", url: "", slug: "generative-art" },
-  { display: "Zustand", url: "", slug: "generative-art" },
-  { display: "Docker", url: "", slug: "generative-art" },
-  { display: "NestJS", url: "", slug: "generative-art" },
+  {
+    display: "p5.js",
+    url: "",
+    materials: "https://github.com/urbanscratcher/study-p5js",
+    slug: "p5js",
+  },
+  {
+    display: "Nature of Code",
+    url: "",
+    materials: "https://note-nature-of-code.netlify.app/",
+    slug: "nature-of-code",
+  },
+  {
+    display: "React",
+    url: "",
+    materials: "https://github.com/urbanscratcher/study-react2",
+    slug: "react",
+  },
+  {
+    display: "TypeScript",
+    url: "",
+    materials: "https://github.com/urbanscratcher/study-react-typescript",
+    slug: "typescript-for-react",
+  },
+  {
+    display: "JavaScript",
+    url: "",
+    materials: "https://github.com/urbanscratcher/study-js",
+    slug: "javascript",
+  },
+  {
+    display: "Next.js",
+    url: "",
+    materials: "https://github.com/urbanscratcher/study-nextjs",
+    slug: "nextjs",
+  },
+  {
+    display: "Three.js",
+    url: "",
+    materials: "https://github.com/urbanscratcher/study-threejs",
+    slug: "threejs",
+  },
+  {
+    display: "React Three Fiber",
+    url: "",
+    materials: "https://github.com/urbanscratcher/study-r3f",
+    slug: "r3f",
+  },
+  {
+    display: "HTML/CSS",
+    url: "",
+    materials: "https://github.com/urbanscratcher/study-html-css-udemy",
+    slug: "html-css",
+  },
+  {
+    display: "React Query",
+    url: "",
+    materials: "https://github.com/urbanscratcher/study-react-query",
+    slug: "react-query",
+  },
+  {
+    display: "Docker",
+    url: "",
+    materials: "https://github.com/urbanscratcher/study-docker",
+    slug: "docker",
+  },
 ];
 
 function InterestsPage() {
@@ -35,7 +89,9 @@ function InterestsPage() {
             key={index}
             className="whitespace-nowrap text-4xl tracking-wide font-normal flex gap-2"
           >
-            <p>{i.display}</p>
+            <a href={i?.materials || ""} target="_blank">
+              <p className="hover:underline hover:decoration-2">{i.display}</p>
+            </a>
             <p className={index === interests.length - 1 ? "hidden" : ""}>•</p>
           </li>
         ))}

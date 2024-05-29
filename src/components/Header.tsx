@@ -8,14 +8,14 @@ function Header() {
         The Catalogue
       </Link>
       <div className="flex gap-4">
+        <Link href="/about" className="hover:underline lowercase">
+          about
+        </Link>
         <Link href="/projects" className="hover:underline lowercase">
           projects
         </Link>
         <Link href="/interests" className="hover:underline lowercase">
           interests
-        </Link>
-        <Link href="/about" className="hover:underline lowercase">
-          about
         </Link>
         <LanguageBtn />
       </div>
