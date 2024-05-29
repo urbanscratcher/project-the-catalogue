@@ -6,7 +6,7 @@ const nextConfig = {
         protocol: "https",
         hostname: "www.notion.so",
         port: "",
-        pathname: "/images/**",
+        pathname: "/image/**",
       },
       {
         protocol: "https",

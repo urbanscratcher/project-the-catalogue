@@ -7,12 +7,13 @@
     @apply font-mono;
   }
 
-  .markdown h1 {
-    @apply break-words text-7xl tracking-tight leading-tight text-center font-medium;
-  }
-
-  .markdown h2 {
-    @apply text-2xl;
+  .selected::after {
+    content: ">";
+    position: absolute;
+    z-index: -1;
+    left: -15px;
+    top: 1px;
+    font-weight: 800;
   }
 
   /* Custom scrollbar styles */
