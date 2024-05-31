@@ -18,6 +18,8 @@ type ProjectPost = {
   github: string;
   projectStart: string;
   projectEnd?: string | undefined;
+  thumbnailImage?: string;
+  thumbnailVideo?: string;
 };
 
 export default class NotionService {
@@ -110,7 +112,13 @@ export default class NotionService {
       github: page.properties.Github.url,
       projectStart: page.properties.ProjectDuration.date?.start ?? "2023-01-01",
       projectEnd: page.properties.ProjectDuration.date?.end ?? undefined,
+      thumbnail:
+        page.properties.Thumbnail?.files.length > 0
+          ? page.properties.Thumbnail?.files[0].file.url
+          : undefined,
     };
+
+    console.log(page.properties.ThumbnailVideo);
 
     return res;
   }

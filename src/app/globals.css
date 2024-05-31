@@ -7,6 +7,15 @@
     @apply font-mono;
   }
 
+  video::-webkit-media-controls-panel {
+    background-color: transparent;
+    height: 100%;
+  }
+
+  video::-webkit-media-controls-enclosure {
+    width: 100%;
+  }
+
   .selected::after {
     content: ">";
     position: absolute;

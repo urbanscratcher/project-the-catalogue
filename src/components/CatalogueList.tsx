@@ -13,16 +13,14 @@ function CatalogueList() {
   const [showDemo, setShowDemo] = useState(false);
   const [thumbnail, setThumbnail] = useState("");
   const { language } = useContext(LanguageContext);
-  const [position, setPosition] = useState({ x: 0, y: 0, xPos: "", yPos: "" });
+  const [position, setPosition] = useState({ x: 0, y: 0 });
 
   // detect mouse movement
 
   const handleMouseMove = (e: any) => {
     setPosition({
-      x: e.clientX,
-      y: e.clientY,
-      xPos: `left-[calc(50% + ${e.clientX})]`,
-      yPos: `top-[calc(50% + ${e.clientY})]`,
+      x: e.clientX + 30,
+      y: e.clientY + 20,
     });
   };
 
@@ -54,7 +52,11 @@ function CatalogueList() {
           <li
             onMouseEnter={() => {
               setShowDemo(true);
-              setThumbnail(post.cover);
+              if (post?.thumbnail) {
+                setThumbnail(post.thumbnail);
+              } else {
+                setThumbnail("");
+              }
             }}
             onMouseMove={() => {
               if (showDemo) {
@@ -162,10 +164,10 @@ function CatalogueList() {
           autoPlay
           loop
           muted
-          className={`outline outline-1 z-20 fixed`}
+          className={`outline outline-1 z-20 fixed aspect-video w-3/12 bg-white`}
           style={{
-            left: position.x + 30 + "px",
-            top: position.y + 20 + "px",
+            left: position.x + "px",
+            top: position.y + "px",
           }}
         />
       ) : (
