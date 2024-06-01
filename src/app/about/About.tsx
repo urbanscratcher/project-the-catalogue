@@ -5,7 +5,6 @@ import Markdown from "react-markdown";
 
 function About() {
   const [text, setText] = useState("");
-
   const { language } = useContext(LanguageContext);
 
   const url = language == "en" ? "/assets/about.md" : "/assets/about_kr.md";

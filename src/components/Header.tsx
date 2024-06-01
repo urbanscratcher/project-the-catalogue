@@ -7,7 +7,7 @@ function Header() {
       <Link className="text-lg capitalize" href="/">
         The Catalogue
       </Link>
-      <div className="flex gap-4">
+      <div className="flex gap-4 items-center">
         <Link href="/about" className="hover:underline lowercase">
           about
         </Link>

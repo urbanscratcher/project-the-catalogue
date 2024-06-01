@@ -76,17 +76,29 @@ function CatalogueList() {
           >
             <div className="flex flex-col">
               <p className={`font-bold leading-6 tracking-wide`}>
-                <Link
-                  href={
-                    post?.github ? `/projects/${post.github.split("/")[4]}` : ""
-                  }
-                  className={`hover:underline`}
-                  onClick={() => {
-                    window.scrollTo(0, 0);
-                  }}
-                >
-                  {String.fromCharCode(64 + i + 1)}. {post.title.toUpperCase()}
-                </Link>
+                {post?.github ? (
+                  <Link
+                    href={`/projects/${post.github.split("/")[4]}`}
+                    className={`hover:underline`}
+                    onClick={() => {
+                      window.scrollTo(0, 0);
+                    }}
+                  >
+                    {String.fromCharCode(64 + i + 1)}.{" "}
+                    {post.title.toUpperCase()}
+                  </Link>
+                ) : (
+                  <Link
+                    href={`/projects/${post.slug}`}
+                    className={`hover:underline`}
+                    onClick={() => {
+                      window.scrollTo(0, 0);
+                    }}
+                  >
+                    {String.fromCharCode(64 + i + 1)}.{" "}
+                    {post.title.toUpperCase()}
+                  </Link>
+                )}
                 <span>
                   {post?.link || post?.github ? (
                     <span className="font-normal">{" | "}</span>

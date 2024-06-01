@@ -9,12 +9,12 @@ type LanguageContextProps = {
 };
 
 export const LanguageContext = createContext<LanguageContextProps>({
-  language: "en",
+  language: "kr",
   toggleLanguage: () => {},
 });
 
 function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguage] = useState<Language>("en");
+  const [language, setLanguage] = useState<Language>("kr");
 
   useEffect(() => {
     const storedLanguage = localStorage.getItem("language");

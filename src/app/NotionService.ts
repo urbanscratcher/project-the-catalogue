@@ -23,39 +23,23 @@ type ProjectPost = {
 };
 
 export default class NotionService {
-  private PROXIED_URL: string =
-    "https://notion-cors.urbanscratcher.workers.dev";
+  private PROXIED_URL: string = process.env.NEXT_PUBLIC_PROXIED_URL || "";
 
   constructor() {}
 
   async getProjects(): Promise<any> {
-    const dbId = process.env.NEXT_PUBLIC_PROJECT_DB;
     const query = {
-      database_id: dbId,
       page_size: 20,
-      filter: {
-        and: [
-          {
-            property: "Published",
-            checkbox: {
-              equals: true,
-            },
-          },
-        ],
-      },
       sorts: [
         {
           property: "ProjectDuration",
-          direction: "Ascending",
+          direction: "ascending",
         },
       ],
     };
 
-    const data = await fetch(`${this.PROXIED_URL}/databases/${dbId}/query`, {
+    const data = await fetch(this.PROXIED_URL, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
       body: JSON.stringify(query),
     });
 
@@ -117,8 +101,6 @@ export default class NotionService {
           ? page.properties.Thumbnail?.files[0].file.url
           : undefined,
     };
-
-    console.log(page.properties.ThumbnailVideo);
 
     return res;
   }
