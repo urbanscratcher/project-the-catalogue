@@ -16,7 +16,6 @@ function CatalogueList() {
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
   // detect mouse movement
-
   const handleMouseMove = (e: any) => {
     setPosition({
       x: e.clientX + 30,
