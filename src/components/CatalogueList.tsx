@@ -79,9 +79,6 @@ function CatalogueList() {
                   <Link
                     href={`/projects/${post.github.split("/")[4]}`}
                     className={`hover:underline`}
-                    onClick={() => {
-                      window.scrollTo(0, 0);
-                    }}
                   >
                     {String.fromCharCode(64 + i + 1)}.{" "}
                     {post.title.toUpperCase()}
@@ -90,9 +87,6 @@ function CatalogueList() {
                   <Link
                     href={`/projects/${post.slug}`}
                     className={`hover:underline`}
-                    onClick={() => {
-                      window.scrollTo(0, 0);
-                    }}
                   >
                     {String.fromCharCode(64 + i + 1)}.{" "}
                     {post.title.toUpperCase()}
