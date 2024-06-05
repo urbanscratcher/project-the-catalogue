@@ -7,6 +7,10 @@
     @apply font-mono;
   }
 
+  pre > code {
+    background-color: transparent !important;
+  }
+
   video::-webkit-media-controls-panel {
     background-color: transparent;
     height: 100%;
@@ -16,6 +20,7 @@
     width: 100%;
   }
 
+  /* Catalogue list - selected marker */
   .selected::after {
     content: ">";
     position: absolute;
