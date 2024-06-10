@@ -15,13 +15,25 @@ May 2024 ~ June 2024 (3주)
 - 저는 보통 프로젝트를 README에서 정리하기 때문에, 프로젝트 소개 페이지는 Notion 페이지를 사용하지 않고, GitHub README 마크다운 파일을 html로 변환했습니다.
 
 ## 시연
+1. 포트폴리오 목록
+<video src="https://github.com/urbanscratcher/project-the-catalogue/assets/17016494/678643a2-a848-4ab0-91d7-9a7e55328285" controls></video>
+
+2. 노션을 백엔드로 사용
+<video src="https://github.com/urbanscratcher/project-the-catalogue/assets/17016494/43c71b2c-50ed-4ad2-ba69-60ad94a66883" controls></video>
 
 ## 기술 구성
 ### 프론트엔드
+- **프레임워크**: Next.js
+- **언어**: TypeScript
+- **스타일링**: TailwindCSS
+- **마크다운 변환**: react-markdown, rehype-highlight, rehype-raw, remark-gfm
+
 ### 백엔드
+- Notion API
+- GitHub Repository
+
 ### 개발 환경
 - **소스 코드**: GitHub
-- **빌드 도구**: Vite
 - **패키지 관리**: pnpm
 - **기타**: VSCode, Eslint, Prettier
 
