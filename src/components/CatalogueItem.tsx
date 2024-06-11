@@ -20,6 +20,8 @@ function CatalogueItem({ post, idx }: { post: any; idx: number }) {
   const pathname = usePathname();
   const path = pathname.split("/")[2] ?? undefined;
 
+  const isActive = post?.github && getGithubPath(post.github) === path;
+
   const linkUrl = post?.github
     ? `/projects/${post.github.split("/")[4]}`
     : `/projects/${post.slug}`;
@@ -28,22 +30,22 @@ function CatalogueItem({ post, idx }: { post: any; idx: number }) {
     idx === 0 || idx === 1 ? "[✕]" : String.fromCharCode(64 + idx - 1) + ".";
 
   return (
-    <li
-      key={post.id}
-      className={`mx-2 my-1 ${
-        post?.github && getGithubPath(post.github) === path
-          ? "selected relative translate-x-2 transition-transform"
-          : ""
-      } `}
-    >
+    <li key={post.id} className={`mx-2 my-1`}>
       <div className="flex flex-col">
-        <p className={`font-bold leading-6 tracking-wide`}>
+        <p
+          className={`font-bold leading-6 transition-all tracking-wide underline underline-offset-2 decoration-black/0 ${
+            isActive ? "decoration-2 decoration-black/100" : ""
+          }`}
+        >
           {idx === 0 || idx === 1 ? (
             <span className="uppercase">
               {alphabetOrder} {post.title}
             </span>
           ) : (
-            <Link href={linkUrl} className={`hover:underline uppercase`}>
+            <Link
+              href={linkUrl}
+              className={`hover:underline hover:decoration-black/100 hover:decoration-1 uppercase visited:bg-red-100`}
+            >
               {alphabetOrder} {post.title}
             </Link>
           )}

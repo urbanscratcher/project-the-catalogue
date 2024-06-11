@@ -1,5 +1,5 @@
 function loading() {
-  return <div>loading...</div>;
+  return <section className="w-full h-screen">loading...</section>;
 }
 
 export default loading;
