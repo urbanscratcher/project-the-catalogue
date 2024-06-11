@@ -17,4 +17,15 @@ const nextConfig = {
     ],
   },
 };
+
+nextConfig.redirects = () => {
+  return [
+    {
+      source: "/",
+      destination: "/projects",
+      permanent: true,
+    },
+  ];
+};
+
 export default nextConfig;
