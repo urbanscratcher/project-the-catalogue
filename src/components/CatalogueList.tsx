@@ -1,27 +1,19 @@
 "use client";
-
-import NotionService from "@/app/NotionService";
-import { LanguageContext } from "@/context/LanguageContext";
+import i18nConfig from "@/i18nConfig";
+import NotionService from "@/service/NotionService";
+import { useCurrentLocale } from "next-i18n-router/client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 function CatalogueList() {
+  const locale = useCurrentLocale(i18nConfig);
   const [projects, setProjects] = useState([]);
   const pathname = usePathname();
   const path = pathname.split("/")[2] ?? undefined;
   const [showDemo, setShowDemo] = useState(false);
   const [thumbnail, setThumbnail] = useState("");
-  const { language } = useContext(LanguageContext);
   const [position, setPosition] = useState({ x: 0, y: 0 });
-
-  // detect mouse movement
-  const handleMouseMove = (e: any) => {
-    setPosition({
-      x: e.clientX + 30,
-      y: e.clientY + 20,
-    });
-  };
 
   useEffect(() => {
     const n = new NotionService();
@@ -32,6 +24,14 @@ function CatalogueList() {
       }
     });
   }, []);
+
+  // detect mouse movement
+  const detectMouseMoving = (e: any) => {
+    setPosition({
+      x: e.clientX + 30,
+      y: e.clientY + 20,
+    });
+  };
 
   const getGithubPath = (github: string) => {
     let path;
@@ -44,28 +44,34 @@ function CatalogueList() {
     return path;
   };
 
+  const mouseEnterHandler = (post: any) => {
+    setShowDemo(true);
+    if (post?.thumbnail) {
+      setThumbnail(post.thumbnail);
+    } else {
+      setThumbnail("");
+    }
+  };
+
+  const mouseMoveHandler = () => {
+    if (showDemo) {
+      window.addEventListener("mousemove", detectMouseMoving);
+    }
+  };
+
+  const mouseLeaveHandler = () => {
+    setShowDemo(false);
+    window.removeEventListener("mousemove", detectMouseMoving);
+  };
+
   return (
     <>
       <ol className="flex flex-col gap-5 break-words whitespace-pre-wrap">
         {projects.map((post: any, i) => (
           <li
-            onMouseEnter={() => {
-              setShowDemo(true);
-              if (post?.thumbnail) {
-                setThumbnail(post.thumbnail);
-              } else {
-                setThumbnail("");
-              }
-            }}
-            onMouseMove={() => {
-              if (showDemo) {
-                window.addEventListener("mousemove", handleMouseMove);
-              }
-            }}
-            onMouseLeave={() => {
-              setShowDemo(false);
-              window.removeEventListener("mousemove", handleMouseMove);
-            }}
+            onMouseEnter={() => mouseEnterHandler(post)}
+            onMouseMove={mouseMoveHandler}
+            onMouseLeave={mouseLeaveHandler}
             key={post.id}
             className={`mx-2 my-1 ${
               post?.github && getGithubPath(post.github) === path
@@ -105,7 +111,7 @@ function CatalogueList() {
                         href={`${post.link}`}
                         target="_blank"
                       >
-                        {language === "kr" ? "링크" : "link"}
+                        {locale === "kr" ? "링크" : "link"}
                       </a>
                       <span> </span>
                     </>
@@ -116,13 +122,13 @@ function CatalogueList() {
                       href={`${post.github}`}
                       target="_blank"
                     >
-                      {language === "kr" ? "깃헙" : "github"}
+                      {locale === "kr" ? "깃헙" : "github"}
                     </a>
                   )}
                 </span>
                 <span className="font-normal tracking-normal">
                   &nbsp;&nbsp;
-                  {language === "kr"
+                  {locale === "kr"
                     ? post?.descriptionKr ?? ""
                     : post.description}
                   &nbsp;

@@ -1,24 +1,17 @@
-"use client";
-import NotionService from "@/app/NotionService";
+import getProjects from "@/service/getProjects";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 
-function ProjectsList() {
-  const [projects, setProjects] = useState([]);
-  useEffect(() => {
-    const n = new NotionService();
-    const p = n.getProjects();
-    p.then((d) => {
-      if (d.data) {
-        setProjects(d.data);
-      }
-    });
-  }, []);
+async function ProjectsList() {
+  const projects = await getProjects();
+
+  if (!projects.data) {
+    return <p>No Projects :(</p>;
+  }
 
   return (
     <ol className="grid lg:grid-cols-3 gap-0">
-      {projects.map((post: any, i) => (
+      {projects.data.map((post: any, i: number) => (
         <li key={post.id} className="py-2 px-4">
           <Link
             className="w-fit"

@@ -1,8 +1,7 @@
-import LanguageProvider from "@/context/LanguageContext";
+import Header from "@/components/Header";
 import type { Metadata } from "next";
 import { Inconsolata } from "next/font/google";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
+import Footer from "../../components/Footer";
 import "./globals.css";
 
 const inconsolata = Inconsolata({ subsets: ["latin"] });
@@ -18,12 +17,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html>
       <body className={inconsolata.className}>
-        <LanguageProvider>
-          <Header />
-          <main>{children}</main>
-        </LanguageProvider>
+        <Header />
+        <main>{children}</main>
         <Footer />
       </body>
     </html>

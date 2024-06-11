@@ -1,13 +1,14 @@
 "use client";
-import { LanguageContext } from "@/context/LanguageContext";
-import { useContext, useEffect, useState } from "react";
+import i18nConfig from "@/i18nConfig";
+import { useCurrentLocale } from "next-i18n-router/client";
+import { useEffect, useState } from "react";
 import Markdown from "react-markdown";
 
 function About() {
   const [text, setText] = useState("");
-  const { language } = useContext(LanguageContext);
+  const locale = useCurrentLocale(i18nConfig);
 
-  const url = language == "en" ? "/assets/about.md" : "/assets/about_kr.md";
+  const url = locale == "en" ? "/assets/about.md" : "/assets/about_kr.md";
 
   useEffect(() => {
     fetch(url)

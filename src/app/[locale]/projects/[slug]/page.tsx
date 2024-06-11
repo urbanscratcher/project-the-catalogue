@@ -1,7 +1,8 @@
 "use client";
 
-import { LanguageContext } from "@/context/LanguageContext";
-import { useContext, useEffect, useState } from "react";
+import i18nConfig from "@/i18nConfig";
+import { useCurrentLocale } from "next-i18n-router/client";
+import { useEffect, useState } from "react";
 import Markdown from "react-markdown";
 import rehypeHighlight from "rehype-highlight";
 import rehypeRaw from "rehype-raw";
@@ -10,14 +11,14 @@ import remarkGfm from "remark-gfm";
 function Page({ params }: { params: { slug: string } }) {
   const [text, setText] = useState("");
   const slug = params.slug;
-  const { language } = useContext(LanguageContext);
+  const locale = useCurrentLocale(i18nConfig);
   const isSlugProjects = slug.startsWith("project");
 
   const url = isSlugProjects
-    ? language == "en"
+    ? locale == "en"
       ? `https://raw.githubusercontent.com/urbanscratcher/${slug}/main/README.md`
       : `https://raw.githubusercontent.com/urbanscratcher/${slug}/main/README_KR.md`
-    : language == "en"
+    : locale == "en"
     ? `/assets/${slug}.md`
     : `/assets/${slug}_kr.md`;
 
