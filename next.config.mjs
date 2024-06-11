@@ -17,6 +17,8 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "project-the-catalogue.vercel.app",
+        port: "",
+        pathname: "/_next/**",
       },
     ],
   },
