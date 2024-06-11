@@ -10,6 +10,10 @@ async function ProjectsList() {
 
   const excludedProjects = projects.data.filter((_: any, i: number) => i >= 2);
 
+  if (excludedProjects.length <= 0) {
+    return null;
+  }
+
   return (
     <ol className="grid lg:grid-cols-3 gap-0 items-center justify-center">
       {excludedProjects.map((post: any, idx: number) => (

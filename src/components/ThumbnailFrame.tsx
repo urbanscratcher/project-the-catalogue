@@ -40,7 +40,6 @@ function ThumbnailFrame({
           {(!isHovered || !thumbnail) && (
             <Image src={imgUrl} alt={title} fill className="object-cover" />
           )}
-
           {isHovered && thumbnail && (
             <video src={thumbnail} autoPlay loop muted className={`absolute`} />
           )}

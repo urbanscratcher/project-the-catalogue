@@ -21,6 +21,7 @@ const nextConfig = {
         pathname: "/_next/**",
       },
     ],
+    unoptimized: true,
   },
 };
 
