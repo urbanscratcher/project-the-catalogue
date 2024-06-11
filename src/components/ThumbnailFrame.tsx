@@ -37,7 +37,13 @@ function ThumbnailFrame({
         {/* img or vid */}
         <div className="w-[250px] aspect-video overflow-hidden relative outline outline-1 bg-white">
           {(!isHovered || !thumbnail) && (
-            <Image src={imgUrl} alt={title} fill className="object-cover" />
+            <Image
+              src={imgUrl}
+              alt={title}
+              fill
+              className="object-cover"
+              unoptimized
+            />
           )}
           {isHovered && thumbnail && (
             <video src={thumbnail} autoPlay loop muted className={`absolute`} />
