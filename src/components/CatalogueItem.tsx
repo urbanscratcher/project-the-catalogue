@@ -5,6 +5,17 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 
+function getGithubPath(github: string) {
+  let path;
+  const paths = github.split("/");
+  try {
+    path = paths[paths.length - 1];
+  } catch (e) {
+    path = undefined;
+  }
+  return path;
+}
+
 function CatalogueItem({ post, idx }: { post: any; idx: number }) {
   const locale = useCurrentLocale(i18nConfig);
   const pathname = usePathname();
@@ -23,28 +34,14 @@ function CatalogueItem({ post, idx }: { post: any; idx: number }) {
   // detect mouse movement
   const detectMouseMoving = (e: any) => {
     setPosition({
-      x: e.clientX + 30,
-      y: e.clientY + 20,
+      x: window.innerWidth - 262,
+      y: window.innerHeight - 150,
     });
   };
 
-  const getGithubPath = (github: string) => {
-    let path;
-    const paths = github.split("/");
-    try {
-      path = paths[paths.length - 1];
-    } catch (e) {
-      path = undefined;
-    }
-    return path;
-  };
-
   const mouseEnterHandler = (post: any) => {
-    setShowDemo(true);
     if (post?.thumbnail) {
-      setThumbnail(post.thumbnail);
-    } else {
-      setThumbnail("");
+      setShowDemo(true);
     }
   };
 
@@ -152,14 +149,14 @@ function CatalogueItem({ post, idx }: { post: any; idx: number }) {
           </div>
         </div>
       </li>
-      {/* video thumbnail when hovering */}
-      {showDemo && thumbnail !== "" && position.x !== 0 && position.y !== 0 && (
+      {/* video thumbnail */}
+      {showDemo && thumbnail && position.x !== 0 && position.y !== 0 && (
         <video
           src={thumbnail}
           autoPlay
           loop
           muted
-          className={`outline outline-1 z-20 fixed aspect-video w-3/12 bg-white min-w-[240px]`}
+          className={`sm:hidden outline outline-1 z-20 fixed aspect-video w-3/12 bg-white min-w-[240px]`}
           style={{
             left: position.x + "px",
             top: position.y + "px",
