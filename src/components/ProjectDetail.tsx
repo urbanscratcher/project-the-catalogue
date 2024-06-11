@@ -4,8 +4,6 @@ import { useCurrentLocale } from "next-i18n-router/client";
 import ProjectDetailLoader from "./ProjectDetailLoader";
 
 function ProjectDetail({ slug }: { slug: string }) {
-  const isSlugProjects = slug.startsWith("project");
-
   const locale = useCurrentLocale(i18nConfig);
 
   const url =
