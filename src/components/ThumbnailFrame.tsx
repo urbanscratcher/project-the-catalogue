@@ -13,16 +13,13 @@ function ThumbnailFrame({
   title: string;
   thumbnail?: string | undefined;
 }) {
-  const [isPressed, setIsPressed] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
-  // isPressed ? "translate-x-1 translate-y-1" : ""
   return (
     <div className="relative w-[250px] aspect-video">
       <div
         className={`bg-white border rounded-md border-black overflow-hidden active:translate-x-1 active:translate-y-1`}
-        onMouseDown={() => setIsPressed(true)}
-        onMouseUp={() => setIsPressed(false)}
+        onTouchStart={() => {}}
         onMouseEnter={() => {
           setIsHovered(true);
         }}
