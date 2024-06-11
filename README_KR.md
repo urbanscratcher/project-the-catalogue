@@ -7,6 +7,7 @@
 ## 주요 기능
 - **포트폴리오 목록**: 각 프로젝트를 간략하게 요약한 목록으로, 마우스 호버시 썸네일 영상이 자동 재생됩니다. 모든 데이터는 Notion 데이터베이스와 연동됩니다.
 - **프로젝트 소개**: GitHub 레포지토리의 README 마크다운 파일과 연동해 보여주고 있습니다.
+- **반응형 디자인**: 모바일 화면에도 잘 보일 수 있도록 했습니다.
 
 ## 기술적 중점 사항
 - Notion을 백엔드로 이용할 수 없을까 고민하다가, Notion API를 알게 되었고, 이를 통해 프로젝트를 관리하도록 만들었습니다.
@@ -15,8 +16,8 @@
 - 저는 보통 프로젝트를 README에서 정리하기 때문에, 프로젝트 소개 페이지는 Notion 페이지를 사용하지 않고, GitHub README 마크다운 파일을 html로 변환했습니다.
 
 ## 시연
-1. 포트폴리오 목록
-<video src="https://github.com/urbanscratcher/project-the-catalogue/assets/17016494/678643a2-a848-4ab0-91d7-9a7e55328285" controls></video>
+1. 프로젝트 보기
+<video src="https://https://res.cloudinary.com/dmc03nbvx/video/upload/v1718147396/catalogue/videos/catalogue_uycnweljjlc67aojjph3.webm" controls></video>
 
 2. 노션을 백엔드로 사용
 <video src="https://github.com/urbanscratcher/project-the-catalogue/assets/17016494/43c71b2c-50ed-4ad2-ba69-60ad94a66883" controls></video>
@@ -49,6 +50,9 @@
 
 ## 회고
 - CORS 문제 때문에 막막해 하다가 스택오버플로우 글을 보고 Cloudflare를 통해 프록시를 구성할 수 있었다. Notion API는 CORS를 지원하지 않아 클라이언트 단에서 사용하기가 다소 불편했다. 그런데 개발하다 보니 그냥 서버 컴포넌트로 정적 페이지 렌더링을 하면 되지 않나라는 생각이 들었다.
+- 그래서 다시 서버 컴포넌트와 클라이언트 컴포넌트를 나누었는데, 혹시 몰라서 프록시는 유지하기로 했다.
+- Notion에서 가져오는 이미지나 영상은 AWS S3에서 가져오는데, 일정 시간이 지나면 만료돼 보이지 않아서 revalidate를 1분으로 설정해두었다. 거기다 rate limit 같은 걸 걸어둔 것 같은데 리퀘스트가 조금이라도 많아지면 에러가 떴다. 그래서 혹시 몰라 새로 올리는 이미지나 영상은 Cloudinary를 이용해 외부 링크로 빼기로 결정했다.
+- 모바일 최적화를 하는데 왼쪽 사이드바를 고정하는 게 은근 까다로웠다. 계속 보고 있던 Next.js 공식 홈페이지를 뜯어 보면서 그 부분을 참고했다.
 - 핀터레스트를 보다가 떠올린, 하고 싶은 스타일이 있긴 했는데 빨리 개발하고 싶어서 심플한 스타일로 구성했다. 아이디어가 생기면 자꾸 일을 만들어 버려서, 중요한 것에 집중하는 지혜가 필요하다.
 
 ## 다음은...
