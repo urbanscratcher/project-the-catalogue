@@ -42,6 +42,7 @@ export default class NotionService {
       const data = await fetch(this.PROXIED_URL, {
         method: "POST",
         body: JSON.stringify(query),
+        next: { revalidate: 60 },
       });
 
       const res = await data.json();
