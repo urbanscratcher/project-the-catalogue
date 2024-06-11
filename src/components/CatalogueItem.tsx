@@ -5,13 +5,20 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 
-function CatalogueItem({ post, i }: { post: any; i: any }) {
+function CatalogueItem({ post, idx }: { post: any; idx: number }) {
   const locale = useCurrentLocale(i18nConfig);
   const pathname = usePathname();
   const path = pathname.split("/")[2] ?? undefined;
   const [showDemo, setShowDemo] = useState(false);
   const [thumbnail, setThumbnail] = useState("");
   const [position, setPosition] = useState({ x: 0, y: 0 });
+
+  const linkUrl = post?.github
+    ? `/projects/${post.github.split("/")[4]}`
+    : `/projects/${post.slug}`;
+
+  const alphabetOrder =
+    idx === 0 || idx === 1 ? "[✕]" : String.fromCharCode(64 + idx - 1) + ".";
 
   // detect mouse movement
   const detectMouseMoving = (e: any) => {
@@ -51,6 +58,7 @@ function CatalogueItem({ post, i }: { post: any; i: any }) {
     setShowDemo(false);
     window.removeEventListener("mousemove", detectMouseMoving);
   };
+
   return (
     <>
       <li
@@ -66,21 +74,16 @@ function CatalogueItem({ post, i }: { post: any; i: any }) {
       >
         <div className="flex flex-col">
           <p className={`font-bold leading-6 tracking-wide`}>
-            {post?.github ? (
-              <Link
-                href={`/projects/${post.github.split("/")[4]}`}
-                className={`hover:underline`}
-              >
-                {String.fromCharCode(64 + i + 1)}. {post.title.toUpperCase()}
-              </Link>
+            {idx === 0 || idx === 1 ? (
+              <span className="uppercase">
+                {alphabetOrder} {post.title}
+              </span>
             ) : (
-              <Link
-                href={`/projects/${post.slug}`}
-                className={`hover:underline`}
-              >
-                {String.fromCharCode(64 + i + 1)}. {post.title.toUpperCase()}
+              <Link href={linkUrl} className={`hover:underline uppercase`}>
+                {alphabetOrder} {post.title}
               </Link>
             )}
+            {/* Site Link and GitHub */}
             <span>
               {post?.link || post?.github ? (
                 <span className="font-normal">{" | "}</span>
@@ -109,6 +112,7 @@ function CatalogueItem({ post, i }: { post: any; i: any }) {
                 </a>
               )}
             </span>
+            {/* Description */}
             <span className="font-normal tracking-normal">
               &nbsp;&nbsp;
               {locale === "kr" ? post?.descriptionKr ?? "" : post.description}
@@ -148,6 +152,7 @@ function CatalogueItem({ post, i }: { post: any; i: any }) {
           </div>
         </div>
       </li>
+      {/* video thumbnail when hovering */}
       {showDemo && thumbnail !== "" && position.x !== 0 && position.y !== 0 && (
         <video
           src={thumbnail}

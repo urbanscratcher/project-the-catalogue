@@ -10,8 +10,8 @@ async function CatalogueLoader() {
 
   return (
     <>
-      {projects.data.map((post: any, i: any) => (
-        <CatalogueItem key={post.id} post={post} i={i} />
+      {projects.data.map((post: any, idx: number) => (
+        <CatalogueItem key={post.id} post={post} idx={idx} />
       ))}
     </>
   );
