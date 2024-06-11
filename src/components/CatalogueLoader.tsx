@@ -4,7 +4,7 @@ import CatalogueItem from "./CatalogueItem";
 async function CatalogueLoader() {
   const projects = await getProjects();
 
-  if (!projects.data) {
+  if (!projects.data || projects.data.length <= 0) {
     return <p>No Projects :(</p>;
   }
 

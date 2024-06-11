@@ -28,22 +28,22 @@ export default class NotionService {
   constructor() {}
 
   async getProjects(): Promise<any> {
-    const query = {
-      page_size: 20,
-      sorts: [
-        {
-          property: "ProjectDuration",
-          direction: "ascending",
-        },
-      ],
-    };
-
-    const data = await fetch(this.PROXIED_URL, {
-      method: "POST",
-      body: JSON.stringify(query),
-    });
-
     try {
+      const query = {
+        page_size: 20,
+        sorts: [
+          {
+            property: "ProjectDuration",
+            direction: "ascending",
+          },
+        ],
+      };
+
+      const data = await fetch(this.PROXIED_URL, {
+        method: "POST",
+        body: JSON.stringify(query),
+      });
+
       const res = await data.json();
 
       const result = res.results
@@ -57,22 +57,19 @@ export default class NotionService {
         nextCursor: res.next_cursor ?? "",
         data: result,
       };
-    } catch {
-      return {
-        hasMore: false,
-        nextCursor: "",
-        data: [],
-      };
+    } catch (error) {
+      return error;
     }
   }
 
   private convertToProjectPost(page: any): ProjectPost {
     let cover = page.cover;
+
     cover =
       cover?.type == "file"
         ? cover.file
         : cover?.type == "external"
-        ? cover.external.url
+        ? cover.external
         : "";
 
     const techStack: SelectOption[] = page.properties.TechStack.multi_select;
@@ -92,13 +89,14 @@ export default class NotionService {
       role: role,
       techStack: techStack,
       date: page.properties.Updated.last_edited_time,
-      link: page.properties.Link.url,
-      github: page.properties.Github.url,
+      link: page.properties.Link?.url,
+      github: page.properties.Github?.url,
       projectStart: page.properties.ProjectDuration.date?.start ?? "2023-01-01",
       projectEnd: page.properties.ProjectDuration.date?.end ?? undefined,
       thumbnail:
         page.properties.Thumbnail?.files.length > 0
-          ? page.properties.Thumbnail?.files[0].file.url
+          ? page.properties.Thumbnail?.files[0]?.file?.url ||
+            page.properties.Thumbnail?.files[0]?.external?.url
           : undefined,
     };
 
