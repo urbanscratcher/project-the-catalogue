@@ -14,6 +14,7 @@ function ThumbnailFrame({
   thumbnail?: string | undefined;
 }) {
   const [isHovered, setIsHovered] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   return (
     <div className="relative w-[250px] aspect-video">
@@ -33,20 +34,26 @@ function ThumbnailFrame({
         </div>
         {/* img or vid */}
         <div className="w-[250px] aspect-video overflow-hidden relative outline outline-1 bg-white">
-          {
-            <Image
-              src={imgUrl}
-              alt={title}
-              fill
-              sizes={"100vw"}
-              className={`object-cover duration-100 ${
-                !isHovered ? "opacity-100" : "opacity-0"
-              } transition-opacity`}
-              onError={(e) => {
-                console.error(e);
-              }}
-            />
-          }
+          <p
+            className={`px-4 py-1 object-cover duration-100 ${
+              !isHovered && isLoading ? "opacity-100" : "opacity-0"
+            } transition-opacity`}
+          >
+            loading...
+          </p>
+          <Image
+            src={imgUrl}
+            alt={title}
+            fill
+            sizes={"100vw"}
+            className={`object-cover duration-100 ${
+              !isHovered ? "opacity-100" : "opacity-0"
+            } transition-opacity`}
+            onError={(e) => {
+              console.error(e);
+            }}
+            onLoad={() => setIsLoading(false)}
+          />
           {thumbnail && (
             <video
               src={thumbnail}

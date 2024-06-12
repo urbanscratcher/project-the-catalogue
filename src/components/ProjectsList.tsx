@@ -15,7 +15,7 @@ async function ProjectsList() {
   }
 
   return (
-    <ol className="grid lg:grid-cols-3 gap-0 items-center justify-center">
+    <ol className="grid lg:grid-cols-2 xl:grid-cols-3 gap-0 items-center justify-center">
       {excludedProjects.map((post: any, idx: number) => (
         <ProjectDetailItem key={post.id} post={post} idx={idx} />
       ))}

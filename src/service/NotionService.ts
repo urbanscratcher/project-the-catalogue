@@ -59,7 +59,7 @@ export default class NotionService {
         data: result,
       };
     } catch (error) {
-      return error;
+      throw error;
     }
   }
 

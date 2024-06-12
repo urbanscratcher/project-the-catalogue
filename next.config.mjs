@@ -28,6 +28,11 @@ const nextConfig = {
       },
     ],
   },
+  env: {
+    NOTION_TOKEN: process.env.NOTION_TOKEN,
+    NOTION_DB_PROJECTS: process.env.NOTION_DB_PROJECTS,
+    NOTION_DB_ABOUT: process.env.NOTION_DB_ABOUT,
+  },
 };
 
 nextConfig.redirects = () => {

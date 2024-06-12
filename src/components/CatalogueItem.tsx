@@ -5,9 +5,9 @@ import CatalogueDescription from "./CatalogueDescription";
 import CatalogueGithub from "./CatalogueGithub";
 import CatalogueSiteLink from "./CatalogueSiteLink";
 
-function getGithubPath(github: string) {
+function getPath(str: string) {
   let path;
-  const paths = github.split("/");
+  const paths = str.split("/");
   try {
     path = paths[paths.length - 1];
   } catch (e) {
@@ -18,9 +18,8 @@ function getGithubPath(github: string) {
 
 function CatalogueItem({ post, idx }: { post: any; idx: number }) {
   const pathname = usePathname();
-  const path = pathname.split("/")[2] ?? undefined;
 
-  const isActive = post?.github && getGithubPath(post.github) === path;
+  const isActive = post?.github && getPath(post.github) === getPath(pathname);
 
   const linkUrl = post?.github
     ? `/projects/${post.github.split("/")[4]}`
