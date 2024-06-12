@@ -14,3 +14,5 @@ services:
       - /app/node_modules
       - /app/.next
     command: pnpm start
+    env_file:
+      - .env
