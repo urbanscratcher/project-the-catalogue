@@ -47,7 +47,7 @@ function ThumbnailFrame({
             fill
             sizes={"100vw"}
             className={`object-cover duration-100 ${
-              !isHovered ? "opacity-100" : "opacity-0"
+              !isHovered && !isLoading ? "opacity-100" : "opacity-0"
             } transition-opacity`}
             onError={(e) => {
               console.error(e);
@@ -60,7 +60,7 @@ function ThumbnailFrame({
               autoPlay
               loop
               muted
-              className={`absolute duration-100 transition-opacity ${
+              className={`absolute top-0 duration-100 transition-opacity ${
                 isHovered ? "opacity-100" : "opacity-0"
               }`}
             />

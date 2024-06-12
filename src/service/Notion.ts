@@ -10,7 +10,7 @@ export const notion = new Client({
   auth: process.env.NOTION_TOKEN,
 });
 
-export const getAbout = async () => {
+export const getAbout = cache(async () => {
   const cookieStore = cookies();
   const lang = cookieStore.get("NEXT_LOCALE");
 
@@ -27,7 +27,7 @@ export const getAbout = async () => {
 
   const blocks = response.results as any;
   return blocks;
-};
+});
 
 export const fetchPageBySlug = cache(async (slug: string) => {
   console.log(slug);

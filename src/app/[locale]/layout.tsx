@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html>
-      <body className={inconsolata.className}>
+      <body className={`${inconsolata.className} pr-2`}>
         <Header />
         <main>{children}</main>
         <Footer />

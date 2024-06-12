@@ -34,13 +34,13 @@ This is a catalog concept website developed for showcasing my portfolio.
 - **Framework**: Next.js
 - **Language**: TypeScript
 - **Styling**: TailwindCSS
-- **Markdown Conversion**: react-markdown, rehype-highlight, rehype-raw, remark-gfm
-- **Multilingual Support**: next-i18n-router
+- **Markdown Conversion**: react-markdown, rehype-highlight, rehype-raw, remark-gfm, @9gustin/react-notion-render
+- **Multilingual Support**: next-i18n-router, next-cookie
 
 ### Backend
 
-- Notion API
-- GitHub Repository
+- **Project Metadata**: @notionhq/client (Notion API)
+- **Project Details**: GitHub Repository
 
 ### Development Environment
 

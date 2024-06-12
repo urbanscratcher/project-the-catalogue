@@ -34,13 +34,13 @@
 - **프레임워크**: Next.js
 - **언어**: TypeScript
 - **스타일링**: TailwindCSS
-- **마크다운 변환**: react-markdown, rehype-highlight, rehype-raw, remark-gfm
-- **다국어 지원**: next-i18n-router
+- **마크다운 변환**: react-markdown, rehype-highlight, rehype-raw, remark-gfm, @9gustin/react-notion-render
+- **다국어 지원**: next-i18n-router, next-cookie
 
 ### 백엔드
 
-- Notion API
-- GitHub Repository
+- **프로젝트 메타데이터**: @notionhq/client (Notion API)
+- **프로젝트 상세**: GitHub Repository
 
 ### 개발 환경
 

@@ -1,9 +1,5 @@
 function Loading() {
-  return (
-    <div className="flex justify-center text-center py-48">
-      <p className="tracking-wide">loading...</p>
-    </div>
-  );
+  return <p className="tracking-wide container">loading...</p>;
 }
 
 export default Loading;
