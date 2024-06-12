@@ -33,11 +33,30 @@ function ThumbnailFrame({
         </div>
         {/* img or vid */}
         <div className="w-[250px] aspect-video overflow-hidden relative outline outline-1 bg-white">
-          {(!isHovered || !thumbnail) && (
-            <Image src={imgUrl} alt={title} fill className="object-cover" />
-          )}
-          {isHovered && thumbnail && (
-            <video src={thumbnail} autoPlay loop muted className={`absolute`} />
+          {
+            <Image
+              src={imgUrl}
+              alt={title}
+              fill
+              sizes={"100vw"}
+              className={`object-cover duration-100 ${
+                !isHovered ? "opacity-100" : "opacity-0"
+              } transition-opacity`}
+              onError={(e) => {
+                console.error(e);
+              }}
+            />
+          }
+          {thumbnail && (
+            <video
+              src={thumbnail}
+              autoPlay
+              loop
+              muted
+              className={`absolute duration-100 transition-opacity ${
+                isHovered ? "opacity-100" : "opacity-0"
+              }`}
+            />
           )}
         </div>
       </div>
