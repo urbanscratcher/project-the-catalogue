@@ -3,6 +3,22 @@
 @tailwind utilities;
 
 @layer base {
+  /* Selection Styling ------------------- */
+  /* Custom selection styles for all browsers */
+  ::selection {
+    @apply bg-black text-white;
+  }
+
+  ::-moz-selection {
+    @apply bg-black text-white;
+  }
+
+  /* For older versions of Internet Explorer (IE 9 and below) */
+  body::-ms-selection {
+    @apply bg-black text-white;
+  }
+
+  /* Scrollbar styling ------------ */
   /* Define the scrollbar style */
   html::-webkit-scrollbar {
     width: 8px;
