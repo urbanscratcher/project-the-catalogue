@@ -22,7 +22,7 @@
 ## 시연
 
 1. 프로젝트 보기
-   <video src="https://https://res.cloudinary.com/dmc03nbvx/video/upload/v1718147396/catalogue/videos/catalogue_uycnweljjlc67aojjph3.webm" controls></video>
+   <video src="https://res.cloudinary.com/dmc03nbvx/video/upload/v1718147396/catalogue/videos/catalogue_uycnweljjlc67aojjph3.webm" controls></video>
 
 2. 노션을 백엔드로 사용
    <video src="https://github.com/urbanscratcher/project-the-catalogue/assets/17016494/43c71b2c-50ed-4ad2-ba69-60ad94a66883" controls></video>
