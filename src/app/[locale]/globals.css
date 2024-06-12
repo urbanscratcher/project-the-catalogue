@@ -11,13 +11,14 @@
 
   /* Define the track style */
   html::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 10px 10px rgb(255, 255, 255);
-    border: solid 2px transparent;
+    border: solid 1px transparent;
+    background-clip: padding-box;
+    @apply bg-transparent rounded-md;
   }
 
   /* Define the thumb style */
   html::-webkit-scrollbar-thumb {
-    border-right: 2px rgba(255, 255, 255, 0) solid;
+    border: solid 1px transparent;
     background-clip: padding-box;
     @apply bg-neutral-300 rounded-md;
   }
@@ -33,7 +34,7 @@
 
   /* Define the button style when being hovered over */
   .container::-webkit-scrollbar-button:hover {
-    background-color: #848484;
+    @apply bg-neutral-400/80;
   }
 
   html {

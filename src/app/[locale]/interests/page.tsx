@@ -82,8 +82,8 @@ const interests: Interest[] = [
 
 function InterestsPage() {
   return (
-    <section className="py-20 mx-auto container px-4 h-[calc(100vh-50px)]">
-      <ul className="flex gap-2 flex-wrap w-1/2">
+    <section className="py-20 mx-auto px-4 max-w-3xl h-[calc(100vh-100px)] flex items-center">
+      <ul className="flex gap-2 flex-wrap">
         {interests.map((i, index) => (
           <li
             key={index}

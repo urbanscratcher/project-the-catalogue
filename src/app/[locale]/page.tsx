@@ -1,5 +1,5 @@
 function HomePage() {
-  return <>dsf</>;
+  return <></>;
 }
 
 export default HomePage;
