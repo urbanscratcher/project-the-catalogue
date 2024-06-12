@@ -4,3 +4,4 @@ Dockerfile
 docker-compose.yml
 .dockerignore
 .next
+.env
