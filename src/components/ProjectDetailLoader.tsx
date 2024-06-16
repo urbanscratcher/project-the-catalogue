@@ -6,6 +6,7 @@ import remarkGfm from "remark-gfm";
 
 async function ProjectDetailLoader({ url }: { url: string }) {
   const text = await getMarkdown(url);
+
   return (
     <Markdown
       rehypePlugins={[rehypeRaw, rehypeHighlight]}

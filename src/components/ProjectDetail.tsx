@@ -12,8 +12,6 @@ function ProjectDetail({ slug }: { slug: string }) {
       ? `https://raw.githubusercontent.com/urbanscratcher/${slug}/main/README.md`
       : `https://raw.githubusercontent.com/urbanscratcher/${slug}/main/README_KR.md`;
 
-  // useEffect(()=>{},[])
-
   return (
     <>
       <ProjectDetailLoader url={url} />
