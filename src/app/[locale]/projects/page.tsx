@@ -1,9 +1,9 @@
-import ProjectsList from "@/components/ProjectsList";
+import ProjectsLoader from "@/components/ProjectsLoader";
 
 export default function ProjectsPage() {
   return (
     <>
-      <ProjectsList />
+      <ProjectsLoader />
     </>
   );
 }

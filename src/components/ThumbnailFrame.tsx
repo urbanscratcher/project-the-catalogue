@@ -67,6 +67,7 @@ function ThumbnailFrame({
           )}
         </div>
       </div>
+      {/* shadow */}
       <div
         className={`-z-10 absolute w-[250px] h-full rounded-md bg-black left-1 top-1`}
       ></div>

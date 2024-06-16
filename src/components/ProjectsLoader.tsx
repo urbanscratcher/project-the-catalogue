@@ -1,7 +1,7 @@
 import getProjects from "@/service/getProjects";
 import ProjectDetailItem from "./ProjectDetailItem";
 
-async function ProjectsList() {
+async function ProjectsLoader() {
   const projects = await getProjects();
 
   if (!projects.data) {
@@ -23,4 +23,4 @@ async function ProjectsList() {
   );
 }
 
-export default ProjectsList;
+export default ProjectsLoader;
