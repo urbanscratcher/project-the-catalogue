@@ -25,8 +25,10 @@ function CatalogueItem({ post, idx }: { post: any; idx: number }) {
     ? `/projects/${post.github.split("/")[4]}`
     : `/projects/${post.slug}`;
 
-  const alphabetOrder =
-    idx === 0 || idx === 1 ? "[✕]" : String.fromCharCode(64 + idx - 1) + ".";
+  const isJustText = !post?.github;
+  const alphabetOrder = isJustText
+    ? "[✕]"
+    : String.fromCharCode(64 + idx + 1) + ".";
 
   return (
     <li key={post.id} className={`mx-2 my-1`}>
@@ -36,7 +38,7 @@ function CatalogueItem({ post, idx }: { post: any; idx: number }) {
             isActive ? "decoration-2 decoration-black/100" : ""
           }`}
         >
-          {idx === 0 || idx === 1 ? (
+          {isJustText ? (
             <span className="uppercase">
               {alphabetOrder} {post.title}
             </span>

@@ -34,9 +34,15 @@ export default class NotionService {
         sorts: [
           {
             property: "ProjectDuration",
-            direction: "ascending",
+            direction: "descending",
           },
         ],
+        filter: {
+          property: "Published",
+          checkbox: {
+            equals: true,
+          },
+        },
       };
 
       const data = await fetch(this.PROXIED_URL, {
@@ -47,11 +53,9 @@ export default class NotionService {
 
       const res = await data.json();
 
-      const result = res.results
-        .map((res: any) => this.convertToProjectPost(res))
-        .sort((a: ProjectPost, b: ProjectPost) =>
-          a.projectStart < b.projectStart ? -1 : 1
-        );
+      const result = res.results.map((res: any) =>
+        this.convertToProjectPost(res)
+      );
 
       return {
         hasMore: res.has_more,
