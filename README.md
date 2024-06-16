@@ -23,6 +23,7 @@ This is a catalog concept website developed for showcasing my portfolio.
 
 1. Viewing Projects
    <video src="https://res.cloudinary.com/dmc03nbvx/video/upload/v1718147396/catalogue/videos/catalogue_uycnweljjlc67aojjph3.webm" controls></video>
+   ![video](https://res.cloudinary.com/dmc03nbvx/video/upload/v1718147396/catalogue/videos/catalogue_uycnweljjlc67aojjph3.webm)
 
 2. Using Notion as Backend
    <video src="https://github.com/urbanscratcher/project-the-catalogue/assets/17016494/43c71b2c-50ed-4ad2-ba69-60ad94a66883" controls></video>
